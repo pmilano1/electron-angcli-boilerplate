@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 import { of } from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {AppVariables} from './app.constants';
+import {RubrikVariables} from './rubrik.constants';
 
 
 
@@ -27,7 +27,7 @@ export class RubrikService {
 
     public getIOStats(): Observable<any> {
         return this.rubrikGetRequest(
-            `https://${this.rubrikDNS}/${AppVariables.internalBaseURL}cluster/me/io_stats?range=-5h`, this.rubrikAPIToken).pipe(
+            `https://${this.rubrikDNS}/${RubrikVariables.internalBaseURL}cluster/me/io_stats?range=-5h`, this.rubrikAPIToken).pipe(
             map(this.extractData)
         );
     }
@@ -42,7 +42,7 @@ export class RubrikService {
             'Minutes': 'minutes'
         });
         this.rubrikGetRequest(
-            `https://${this.rubrikDNS}/${AppVariables.v1BaseURL}${AppVariables.slaDomain}`, this.rubrikAPIToken).subscribe(
+            `https://${this.rubrikDNS}/${RubrikVariables.v1BaseURL}${RubrikVariables.slaDomain}`, this.rubrikAPIToken).subscribe(
             slaObj => {
                 for (let i = 0; i < slaObj['total']; i++) {
                     let slaId = slaObj['data'][i]['id'];
@@ -92,7 +92,7 @@ export class RubrikService {
             let i = this.orgArrayMerge.findIndex(item => item.rubrik_vapp_id === vappId);
             this.orgArrayMerge[i].rubrik_vapp_sla_name = 'Modifying';
             this.rubrikPatchRequest(
-                `https://${rubrikDNS}/${AppVariables.internalBaseURL}vcd/vapp/${vappId}`, slaAssigned, this.rubrikAPIToken).subscribe(
+                `https://${rubrikDNS}/${RubrikVariables.internalBaseURL}vcd/vapp/${vappId}`, slaAssigned, this.rubrikAPIToken).subscribe(
                 result => {
                     let res = result;
                     this.orgArrayMerge[i].rubrik_vapp_sla_name = res['configuredSlaDomainName'] || 'Modifying';

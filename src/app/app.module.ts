@@ -1,22 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {RubrikService} from './rubrik.service';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { ClarityModule } from '@clr/angular';
 
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ReportComponent } from './report/report.component';
+import { UiModule } from './ui/ui.module';
+import { AppRoutingModule } from './app.routing';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ReportComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    HttpModule,
+    ClarityModule,
+    UiModule,
+    AppRoutingModule,
   ],
-  providers: [RubrikService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

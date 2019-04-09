@@ -59,6 +59,7 @@
     "@clr/angular": "^1.1.2",
     "@clr/ui": "^1.1.2",
     "@clr/icons": "^1.1.2",
+    "@webcomponents/custom-elements": "^1.2.2",
     "crypto-js": "^3.1.9-1",
     "electron-compile": "6.4.4",
     "electron-squirrel-startup": "1.0.0",
